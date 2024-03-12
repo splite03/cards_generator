@@ -1,0 +1,50 @@
+.image-loader{
+	$self: &;
+
+	&__wrapper{
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		justify-content: center;
+		align-items: center;
+	}
+	&__input{
+		min-height: 100px;
+		min-width: 100px;
+		padding: 20px;
+		background: rgba(255,255,255, 1);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border-radius: 20px;
+		cursor: pointer;
+		transition: all .2s ease-in-out;
+		outline: 2px dashed rgba(0,0,0, .2);
+
+		&:hover{
+			opacity: 0.8;
+			outline: 2px dashed rgba(0,0,0, 1);
+
+			#{$self}__symbol, #{$self}__text{
+				opacity: 1;
+			}
+		}
+
+		input{
+			display: none;
+		}
+	}
+	&__symbol{
+		height: 40px;
+		width: 40px;
+		transition: all .2s ease-in-out;
+		opacity: .3;
+	}
+	&__text{
+		transition: all .2s ease-in-out;
+		opacity: .3;
+		font-weight: 900;
+		color: black;
+	}
+}

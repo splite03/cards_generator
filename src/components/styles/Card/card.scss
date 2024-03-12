@@ -1,0 +1,187 @@
+.card{
+	perspective: 500px;
+	cursor: pointer;
+
+	&[data-noimg = 'true'] {
+		cursor: default;
+	}
+
+	* {
+		font-family: $fontCard;
+		pointer-events: none; // todo turn on
+		-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none; /* Safari */
+		-khtml-user-select: none; /* Konqueror HTML */
+		-moz-user-select: none; /* Old versions of Firefox */
+		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none;
+	}
+	&__wrapper{
+		border-radius: 20px;
+		background: rgba(255,255,255,.3);
+		position: relative;
+		overflow: hidden;
+		box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.27);
+		backface-visibility: hidden;
+
+		&--outed{
+			transition: all .1s ease-in-out;
+		}
+		&--faced{
+			transition: all .5s ease-in-out;
+		}
+	}
+	&__front{
+		backface-visibility: hidden;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	&__image-loader{
+		pointer-events: all;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	&__back{
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: rotateY(180deg);
+		backface-visibility: hidden;
+		transition: all .5s ease-in-out;
+		box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.27);
+		border-radius: 20px;
+
+		&--flipped{
+			transform: rotateY(359.9deg);
+		}
+	}
+	&__path{
+		position: absolute;
+		left: 0;
+		z-index: 999;
+		width: calc(100% - 20px);
+		padding: 4px 0 8px 15px;
+		background: url($pathSource + 'a4516109-fb72-430e-a00e-c73ddd16d1fd/') no-repeat;
+		background-size: 100% 100%;
+		min-height: 30px;
+
+		&--top{
+			top: 10px;
+		}
+		&--bottom{
+			bottom: 25px;
+		}
+		&--extra{
+			padding: 2px 0 2px 15px;
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+	&__name{ // challenge
+		position: absolute;
+		top: 0;
+		left: 15px;
+		background: url($pathSource + '2eea8067-dfe4-4d63-8fe4-3fe25b896c48/') no-repeat;
+		background-position: bottom center;
+		background-size: contain;
+		width: 30px;
+		height: 83%;
+
+		&::before{
+			content: '';
+			background-color: #171324;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 50%;
+		}
+	}
+}
+.card-header{
+	&__text{
+		font-weight: 500;
+		font-size: 20px;
+		width: 100%;
+		line-height: 18px;
+		max-height: 36px;
+		display: flex;
+		align-items: center;
+	}
+}
+.card-challenge{
+	&__name{
+		color: white;
+		font-weight: 500;
+		writing-mode: tb;
+		transform: rotate(180deg);
+		font-size: 20px;
+		line-height: 20px;
+		margin-left: -7px;
+		margin-top: 12px;
+	}
+	&__rotated{
+		position: absolute;
+		top: 50px;
+		left: -2px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	&__difficulty{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 34px;
+		height: 34px;
+		min-width: 34px;
+		width: 34px;
+		background: url($pathSource + '0e4c240a-b0a8-4c8b-b3b2-dc2705ab05f7/') no-repeat center/cover;
+		font-size: 28px;
+		font-weight: 500;
+		color: white;
+		border-radius: 2px;
+
+		&--extra{
+			$size: 28px;
+			height: $size;
+			min-height: $size;
+			width: $size;
+			min-width: $size;
+			font-size: 15px;
+			font-weight: 700;
+			margin-right: 6px;
+			border-radius: 4px;
+			transform: scale(1);
+		}
+	}
+	&__gap{
+		height: 14px;
+		width: 14px;
+		background: url($pathSource + 'f633178b-c9be-4ed5-8c60-7a2c4b18aba3/') no-repeat center/cover;
+	}
+	&__rune{
+		height: 30px;
+		width: 30px;
+	}
+}
+.card-path{
+	&__rewards{
+		display: flex;
+		gap: 2px;
+		align-items: center;
+		margin-right: -6px;
+		transform: scale(1.3) translate(0, -40%);
+		transform-origin: center right;
+		position: absolute;
+		top: 50%;
+		right: -8px;
+	}
+}

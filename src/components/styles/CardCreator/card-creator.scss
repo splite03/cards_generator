@@ -1,0 +1,159 @@
+.card-creator{
+
+	h1{
+		text-align: center;
+		letter-spacing: 19px;
+		font-weight: 900;
+		text-shadow: 0 0 20px red;
+	}
+	&__wrapper{
+		display: flex;
+		gap: 20px;
+		border: 2px solid rgba(0,0,0,.5);
+		border-radius: 20px;
+		width: calc(100vw - 40px);
+		max-width: 1440px;
+		padding: 30px;
+		background: url('@/assets/back.jpg') no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+	&__editor, &__preview{
+		width: 50%;
+		height: 80vh;
+		//border: 1px dashed rgba(0,0,0,.2);
+		padding: 10px;
+	}
+	&__type-card{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 0 30px;
+	}
+	&__type, &__act{
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	&__clear-image{
+		padding: 20px;
+		position: absolute;
+		z-index: 999;
+		pointer-events: all;
+		bottom: 0px;
+		right: 0px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		border-radius: 8px;
+		border: 2px dashed black;
+		transition: all .2s ease-in-out;
+		cursor: pointer;
+		opacity: .3;
+		font-weight: 900;
+
+		&::before{
+			content: '';
+			background: url($pathSource + '2908aae4-53b5-4798-b58f-c21797b07a97/') no-repeat center/cover;
+			height: 30px;
+			width: 30px;
+		}
+
+		&:hover{
+			opacity: 1;
+		}
+	}
+	&__preview{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
+	&__editor{
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding-right: 50px;
+		overflow: auto;
+
+		&::-webkit-scrollbar{
+			width: 10px;
+			background: rgba(0,0,0,.2);
+		}
+		&::-webkit-scrollbar-thumb{
+			border-radius: 4px;
+			width: 100%;
+			background: coral;
+		}
+		&::-webkit-scrollbar-track{}
+	}
+	&__texts{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	&__rewards{
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 0 10px;
+	}
+	&__zoom{
+		position: absolute;
+		top: 50%;
+		right: 10px;
+		z-index: 0;
+		transform-origin: center;
+		transform: translate(50%, 50%) rotate(-90deg);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		input{
+			cursor: pointer;
+			accent-color: coral;
+		}
+	}
+	&__name-card{
+		input[type='number'] {
+			height: 30px;
+			width: 30px;
+			border-radius: 6px;
+			margin-left: 10px;
+			font-size: 16px;
+		}
+	}
+}
+.card-creator-type-card{
+	&__title{
+		color: white;
+		font-size: 20px;
+	}
+}
+.card-creator-difficulty{
+	&__runes{
+		display: flex;
+		gap: 20px;
+		align-items: center;
+		justify-content: center;
+		margin-top: 12px;
+	}
+	&__points{
+		height: 40px;
+		width: 40px;
+		text-align: center;
+		font-size: 20px;
+		margin-right: 50px;
+		border: 2px solid black;
+		border-radius: 6px;
+		font-size: 16px;
+
+		&:focus{
+			border: 2px solid #ff8a6f;
+			outline: none;
+		}
+	}
+}
