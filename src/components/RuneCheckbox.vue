@@ -8,9 +8,16 @@
 			:disabled
 		>
 		<img
-			:src="`https://ucarecdn.com/${runes[id].img}/`"
+			:src="`https://ucarecdn.com/${items[id].img}/`"
 			alt="rune"
 			:data-type="id"
+		>
+		<input
+			v-if="allowedCount"
+			class="rune-checkbox__count"
+			type="number"
+			max="10"
+			min="0"
 		>
 	</label>
 </template>
@@ -23,19 +30,30 @@
 		checked: boolean;
 		id: number;
 		disabled: boolean;
+		items: any[];
+		allowedCount: boolean;
 	}>()
 </script>
 
 <style lang="scss" scoped>
 	.rune-checkbox{
 		$self: &;
-		height: 40px;
-		width: 40px;
-		display: block;
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		gap: 5px;
 		position: relative;
 		cursor: pointer;
 		
-		input{
+		&__count{
+			height: 25px;
+			width: 25px;
+			text-align: center;
+			top: -5px;
+			left: 50%;
+		}
+		
+		input[type="checkbox"]{
 			display: none;
 			position: absolute;
 			z-index: 1;
@@ -73,9 +91,8 @@
 			}
 		}
 		img{
-			height: 100%;
-			width: 100%;
-			position: absolute;
+			height: 40px;
+			object-fit: contain;
 			top: 0;
 			left: 0;
 			filter: brightness(.7);

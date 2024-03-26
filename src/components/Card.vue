@@ -25,23 +25,32 @@
 			<div class="card__front"
 			     :class="{'card__front--flipped': isFaceAnimation}"
 			     :style="`
-			        background: url('${frontImage}') no-repeat center/cover;
+			        background: url('${card.imageId ? `https://ucarecdn.com/${card.imageId}/` : card.imageUrl}') no-repeat center/cover;
 			     `"
 			>
 				<!-- Верхний путь -->
 				<div
 					class="card__path card__path--top card-path"
-					:class="{'card__path--extra': topPathExtraDif}"
+					:class="{
+						'card__path--extra': topPathExtraDif,
+						'card__path--dark' : card.topPath.isDark,
+					}"
 					ref="topPathEl"
 				>
 					<span class="card-header__text">
 						<span
 							class="card-challenge__difficulty card-challenge__difficulty--extra"
+							:class="{
+								'card__path--dark' : card.topPath.isDark,
+							}"
 							v-if="topPathExtraDif"
 						>
 							+{{topPathExtraDif}}
 						</span>
 						<span
+							:class="{
+								'card-challenge__name--dark' : card.topPath.isDark,
+							}"
 							:style="`
 									width: calc(100% - ${$refs.topRew?.offsetWidth+43}px);
 								`"
@@ -54,8 +63,11 @@
 						ref="topRew"
 					>
 						<Reward
-							v-for="reward in topRewards"
-							:id="reward"
+							:class="{
+								'card__path--dark' : card.topPath.isDark,
+							}"
+							v-for="reward in card.topPath.rewards"
+							:id="reward.id"
 						/>
 					</div>
 				</div>
@@ -63,16 +75,25 @@
 				<!-- Нижний путь -->
 				<div
 					class="card__path card__path--bottom card-path"
-			        :class="{'card__path--extra': botPathExtraDif}"
+			        :class="{
+						'card__path--extra': botPathExtraDif,
+						'card__path--dark' : card.botPath.isDark,
+					}"
 				>
 					<span class="card-header__text">
 						<span
 							class="card-challenge__difficulty card-challenge__difficulty--extra"
+							:class="{
+								'card__path--dark' : card.botPath.isDark,
+							}"
 							v-if="botPathExtraDif"
 						>
 							+{{botPathExtraDif}}
 						</span>
 						<span
+							:class="{
+								'card-challenge__name--dark' : card.botPath.isDark,
+							}"
 							:style="`
 									width: calc(100% - ${$refs.botRew?.offsetWidth+43}px);
 								`"
@@ -85,15 +106,18 @@
 						ref="botRew"
 					>
 						<Reward
-							v-for="reward in botRewards"
-							:id="reward"
+							:class="{
+								'card__path--dark' : card.botPath.isDark,
+							}"
+							v-for="reward in card.botPath.rewards"
+							:id="reward.id"
 						/>
 					</div>
 				</div>
 				
 				<!-- Название испытания -->
 				<div class="card__name card-challenge">
-					<div class="card-challenge__rotated" :style="`top: ${topPathHeight + 15}px;`">
+					<div class="card-challenge__rotated" :style="`top: ${topPathHeight}px;`">
 						<div class="card-challenge__difficulty">{{difficulty}}</div>
 						<div class="card-challenge__gap" v-if="(challengeRunes || []).length !== 0"></div>
 						<template v-for="(rune, index) in (challengeRunes || [])">
@@ -144,6 +168,7 @@
 	 * Constants
 	 */
 	const props = defineProps<{
+		book?: boolean;
 		height: number | string;
 		width: number | string;
 		act: number | null;
@@ -159,9 +184,10 @@
 		botPathExtraDif: number;
 		topRewards: number[];
 		botRewards: number[];
+		card: any;
 	}>();
 	const frontImage = toRef(props,'frontImg');
-	const {act, botPath, topPath} = toRefs(props);
+	const {act, botPath, topPath, book} = toRefs(props);
 	const xDeg = ref(0);
 	const yDeg = ref(0);
 	const isMouseIn = ref(false);
@@ -181,7 +207,7 @@
 	const topPathEl = ref('topPathEl');
 	const topPathHeight = computed(() => {
 		if (topPath.value.length){
-			return topPathEl.value?.offsetHeight;
+			return topPathEl.value?.offsetHeight + 15;
 		}
 	});
 	console.log(topPathHeight)
@@ -190,7 +216,7 @@
 	 * Functions
 	 */
 	const onMousemove = (event) => {
-		if (isStarting.value || isFaceAnimation.value || isFace.value || !frontImage.value) {
+		if (isStarting.value || isFaceAnimation.value || isFace.value || !frontImage.value || book.value) {
 			return;
 		}
 		const x = event.offsetX;
@@ -218,6 +244,7 @@
 		xDeg.value = calculatedDegY;
 	};
 	const enterCard = () => {
+		if (book.value) return;
 		isMouseIn.value = true;
 	};
 	const clearDeg = () => {
@@ -226,7 +253,7 @@
 		yDeg.value = 0;
 	};
 	const rotateCard = () => {
-		if (isFaceAnimation.value || !frontImage.value) {
+		if (isFaceAnimation.value || !frontImage.value ) {
 			return;
 		}
 		clearDeg();
