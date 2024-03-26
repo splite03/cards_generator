@@ -9,6 +9,7 @@
 		v-if="isBookOpened"
 		@close="openBook"
 	/>
+	<Version/>
 </template>
 
 <script setup lang="ts">
@@ -21,6 +22,7 @@
 	import {UploadClient} from "@uploadcare/upload-client";
 	import Book from "@/components/Book/Book.vue";
 	import ImageGeneratorAI from "@/components/ImageGeneratorAI.vue";
+	import Version from "@/components/Version.vue";
 	
 	// Initialize Firebase
 	const app = initializeApp(firebaseConfig);
