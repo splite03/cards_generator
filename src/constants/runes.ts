@@ -1,4 +1,6 @@
-export const runes = {
+import type {Rune, RuneID} from "@/types/runes.t";
+
+export const runes : Record<RuneID, Rune> = {
     0: {
         name: 'Сила',
         img: 'a692c434-c29e-4214-9b48-f920e7773dee',

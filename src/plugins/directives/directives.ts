@@ -35,7 +35,7 @@ export class Directives {
                     if(e.composedPath().includes(_node)){
                         return;
                     }else{
-                        callback();
+                        callback()
                     }
                 }
 

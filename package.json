@@ -6,12 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build --force"
+    "type-check": "tsc --project tsconfig.json --noEmit",
+    "fb-check": "firebase emulators:start"
   },
   "dependencies": {
     "@uploadcare/upload-client": "^6.14.1",
+    "firebase": "^10.8.1",
+    "openai": "^4.29.1",
+    "openai-fetch": "^2.0.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.15"
   },

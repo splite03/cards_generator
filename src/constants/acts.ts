@@ -1,4 +1,6 @@
-export const acts = {
+import type {Act, ActID} from '$types/act.t';
+
+export const acts: Record<ActID, Act> = {
     0: {
         name: 'Акт 1',
         backImg: '560b1c31-47cf-40aa-b0e3-181223034459',

@@ -8,7 +8,7 @@
 
 	* {
 		font-family: $fontCard;
-		pointer-events: none; // todo turn on
+		//pointer-events: none; // todo turn on
 		-webkit-touch-callout: none; /* iOS Safari */
 		-webkit-user-select: none; /* Safari */
 		-khtml-user-select: none; /* Konqueror HTML */
@@ -83,6 +83,9 @@
 			display: flex;
 			justify-content: space-between;
 		}
+		&--dark{
+			filter: invert(1);
+		}
 	}
 	&__name{ // challenge
 		position: absolute;
@@ -93,6 +96,7 @@
 		background-size: contain;
 		width: 30px;
 		height: 83%;
+
 
 		&::before{
 			content: '';
@@ -126,6 +130,11 @@
 		line-height: 20px;
 		margin-left: -7px;
 		margin-top: 12px;
+
+		&--dark{
+			color: white;
+			filter: invert(1);
+		}
 	}
 	&__rotated{
 		position: absolute;

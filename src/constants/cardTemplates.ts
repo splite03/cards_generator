@@ -1,4 +1,5 @@
-export type Template = any;
+import type {Template, TemplateID} from "@/types/templates.t";
+
 const defaultSizeWidth = 300;
 const defaultSize = {
     height: defaultSizeWidth * 1.72, // соотношение ширины и высоты в процентах (мб 1.72)
@@ -8,7 +9,7 @@ const specialCardSize = {
     height: defaultSizeWidth * 1.38, // соотношение ширины и высоты в процентах
     width: defaultSizeWidth,
 }
-export const cardTemplates: Record<number, Template> = {
+export const cardTemplates: Record<TemplateID, Template> = {
     0: {
         name: 'Происхождение',
         img: '',

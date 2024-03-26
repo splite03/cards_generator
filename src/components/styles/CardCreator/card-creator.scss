@@ -35,13 +35,19 @@
 		flex-direction: column;
 		gap: 10px;
 	}
+	&__apply{
+		position: absolute;
+		bottom: 20px;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
 	&__clear-image{
 		padding: 20px;
 		position: absolute;
 		z-index: 999;
 		pointer-events: all;
-		bottom: 0px;
-		right: 0px;
+		bottom: 0;
+		right: 0;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -70,6 +76,15 @@
 		align-items: center;
 		position: relative;
 	}
+	&__preview-card{
+		position: relative;
+		z-index: 9999;
+	}
+	&__book-open{
+		position: absolute;
+		bottom: 30px;
+		right: 30px;
+	}
 	&__editor{
 		display: flex;
 		flex-direction: column;
@@ -86,7 +101,6 @@
 			width: 100%;
 			background: coral;
 		}
-		&::-webkit-scrollbar-track{}
 	}
 	&__texts{
 		display: flex;
@@ -99,7 +113,16 @@
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: center;
-		gap: 0 10px;
+		gap: 10px 10px;
+	}
+	&__path-row{
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	&__checkbox{
+		height: 28px;
+		width: 28px;
 	}
 	&__zoom{
 		position: absolute;
@@ -122,7 +145,6 @@
 			height: 30px;
 			width: 30px;
 			border-radius: 6px;
-			margin-left: 10px;
 			font-size: 16px;
 		}
 	}
@@ -145,11 +167,13 @@
 		height: 40px;
 		width: 40px;
 		text-align: center;
-		font-size: 20px;
-		margin-right: 50px;
 		border: 2px solid black;
 		border-radius: 6px;
 		font-size: 16px;
+
+		&--mr{
+			margin-right: 50px;
+		}
 
 		&:focus{
 			border: 2px solid #ff8a6f;
